@@ -1,0 +1,6 @@
+---
+en:
+  decidim:
+    components:
+      additional_authorization_handler:
+        name: AdditionalAuthorizationHandler
