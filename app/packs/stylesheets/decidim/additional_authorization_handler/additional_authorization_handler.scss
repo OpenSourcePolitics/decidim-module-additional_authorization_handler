@@ -1,1 +1,43 @@
 /* css for decidim_additional_authorization_handler */
+
+#new_authorization_handler {
+  fieldset {
+    margin-bottom: 2vh;
+    padding: 10px 0;
+    border: solid 1px #e8e8e8;
+    border-radius: var(--card-radius);
+  }
+
+  legend {
+    max-width: 100%;
+    margin-bottom: 0.5rem;
+    margin-left: 20px;
+    padding: 0 5px;
+    border-radius: 264px;
+    color: #7f7f7f;
+  }
+  .field-60 input {
+    width: 60%;
+    margin-bottom: 1rem;
+  }
+  label[for=authorization_handler_address] input {
+    display: block;
+    margin: 1rem 0;
+  }
+  label[for=authorization_handler_city] input {
+      display: block;
+      margin: 1rem 0;
+  }
+  label[for=authorization_handler_email] input {
+    display: block;
+    margin: 1rem 0;
+  }
+  label[for=authorization_handler_phone_number] input {
+    display: block;
+    margin: 1rem 0;
+  }
+  .field-30 > input {
+    width: 30%;
+    margin-bottom: 1rem;
+  }
+}
