@@ -15,6 +15,12 @@ module Decidim
         # root to: "additional_authorization_handler#index"
       end
 
+      initializer "additional_authorization_handler.mount_routes" do
+        Decidim::Core::Engine.routes do
+          mount Decidim::AdditionalAuthorizationHandler::Engine => "/"
+        end
+      end
+
       initializer "AdditionalAuthorizationHandler.webpacker.assets_path" do
         Decidim.register_assets_path File.expand_path("app/packs", root)
       end
