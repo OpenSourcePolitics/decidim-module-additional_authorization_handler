@@ -1,0 +1,45 @@
+---
+fr:
+  decidim:
+    authorization_handlers:
+      extended_socio_demographic_authorization:
+        name: Données personnelles
+      extended_socio_demographic_authorization_handler:
+        explanation: Complétez les informations de votre profil
+        fields:
+          address: Addresse
+          city: Ville
+          code: Code postal
+          email: Courriel
+          first_name: Nom
+          last_name: Prénom
+          phone_number: Numéro de téléphone
+          postal_code: Code postal
+          resident: J'atteste avoir plus de 16 ans et résider, travailler ou étudier dans le département de Loire-Atlantique.
+          rgpd: rgpd
+        help_text:
+          global_help_html: Il est nécessaire de compléter ce formulaire pour créer une initiative.
+        name: Données personnelles
+    verifications:
+      authorizations:
+        first_login:
+          actions:
+            extended_socio_demographic_authorization_handler: Vérifier avec Données
+              personnelles
+  extended_socio_demographic_authorization:
+    form:
+      address: Addresse
+      city: Ville
+      code: Code postal
+      email: Email
+      email_or_phone_field: Veuillez renseigner au moins votre e-mail ou numéro de
+        téléphone, ou les deux.
+      email_or_phone_legend: Informations de contact
+      lastname: Nom
+      name: Prénom
+      number: Numéro de téléphone
+      postal_code:
+        help_message: Veuillez renseigner votre code postal pour choisir la ville
+      resident: J’atteste avoir plus de 16 ans et travailler, habiter, étudier en
+        Loire–Atlantique.
+      rgpd: Mention RGPD (ou lien vers les mentions légales)
