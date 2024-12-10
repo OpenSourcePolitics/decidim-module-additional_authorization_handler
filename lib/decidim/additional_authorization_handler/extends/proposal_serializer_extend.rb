@@ -69,46 +69,6 @@ module Decidim::AdditionalAuthorizationHandler
 
       private
 
-      attr_reader :proposal
-      alias resource proposal
-
-      def component
-        proposal.component
-      end
-
-      def meetings
-        proposal.linked_resources(:meetings, "proposals_from_meeting").map do |meeting|
-          Decidim::ResourceLocatorPresenter.new(meeting).url
-        end
-      end
-
-      def related_proposals
-        proposal.linked_resources(:proposals, "copied_from_component").map do |proposal|
-          Decidim::ResourceLocatorPresenter.new(proposal).url
-        end
-      end
-
-      def url
-        Decidim::ResourceLocatorPresenter.new(proposal).url
-      end
-
-      def user_endorsements
-        proposal.endorsements.for_listing.map { |identity| identity.normalized_author&.name }
-      end
-
-      def original_proposal_url
-        return unless proposal.emendation? && proposal.amendable.present?
-
-        Decidim::ResourceLocatorPresenter.new(proposal.amendable).url
-      end
-
-      # Recursively strips HTML tags from given Hash strings using convert_to_text from Premailer
-      def convert_to_plain_text(value)
-        return value.transform_values { |v| convert_to_plain_text(v) } if value.is_a?(Hash)
-
-        convert_to_text(value)
-      end
-
       def author_fields
         is_author_user_group = resource.coauthorships.map(&:decidim_user_group_id).any?
 
@@ -128,14 +88,6 @@ module Decidim::AdditionalAuthorizationHandler
           end,
           phone_number: author_phone_number(resource.authors.map { |author| is_author_user_group ? "" : author.id }),
         }
-      end
-
-      def author_name(author)
-        if author.respond_to?(:name)
-          translated_attribute(author.name) # is a Decidim::User or Decidim::Organization or Decidim::UserGroup
-        elsif author.respond_to?(:title)
-          translated_attribute(author.title) # is a Decidim::Meetings::Meeting
-        end
       end
 
       def author_nickname(author)
@@ -167,32 +119,6 @@ module Decidim::AdditionalAuthorizationHandler
         # rubocop:disable Lint/SafeNavigationChain
         authorization.first.try(:metadata)&.to_h["phone_number"].presence || ""
         # rubocop:enable Lint/SafeNavigationChain
-      end
-
-      def author_url(author)
-        if author.respond_to?(:nickname)
-          profile_url(author.nickname) # is a Decidim::User or Decidim::UserGroup
-        elsif author.respond_to?(:title)
-          meeting_url(author) # is a Decidim::Meetings::Meeting
-        else
-          root_url # is a Decidim::Organization
-        end
-      end
-
-      def profile_url(nickname)
-        Decidim::Core::Engine.routes.url_helpers.profile_url(nickname, host:)
-      end
-
-      def meeting_url(meeting)
-        Decidim::EngineRouter.main_proxy(meeting.component).meeting_url(id: meeting.id, host:)
-      end
-
-      def root_url
-        Decidim::Core::Engine.routes.url_helpers.root_url(host:)
-      end
-
-      def host
-        resource.organization.host
       end
     end
   end
