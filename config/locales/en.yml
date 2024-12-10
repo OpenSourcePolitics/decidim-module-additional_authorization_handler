@@ -1,9 +1,15 @@
 ---
+
 en:
   decidim:
     authorization_handlers:
       extended_socio_demographic_authorization:
         name: Additional informations
+      phone_authorization_handler:
+        explanation: Verify your account by entering your phone number
+        fields:
+          phone_number: Phone number (without point nor whitespace)
+        name: Phone number recovery
       extended_socio_demographic_authorization_handler:
         explanation: Complete your profile with additional informations
         fields:
@@ -28,6 +34,11 @@ en:
         first_login:
           actions:
             extended_socio_demographic_authorization_handler: Additional informations
+        new:
+          authorize: I continue
+          authorize_with: Fill in your phone number
+        skip_verification: You will not be able to continue your action without informing this information. However, you can %{link}
+        start_exploring: consult the content of the platform
   extended_socio_demographic_authorization:
     form:
       address: Address
@@ -45,6 +56,13 @@ en:
           city
       resident: Resident
       rgpd: Rgpd
+  errors:
+    messages:
+      phone_number_format: Not a valid phone number format
+  phone_authorization:
+    form:
+      email_recuperation_message: This personal information is reserved to the platform's
+        administrators and is not accessible by other users.
 
 
 

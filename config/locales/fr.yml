@@ -4,6 +4,11 @@ fr:
     authorization_handlers:
       extended_socio_demographic_authorization:
         name: Données personnelles
+      phone_authorization_handler:
+        explanation: Vérifiez votre compte en renseignant votre numéro de téléphone
+        fields:
+          phone_number: Numéro de téléphone (sans point ni espace)
+        name: Récupération du numéro de téléphone
       extended_socio_demographic_authorization_handler:
         explanation: Complétez les informations de votre profil
         fields:
@@ -26,6 +31,11 @@ fr:
           actions:
             extended_socio_demographic_authorization_handler: Vérifier avec Données
               personnelles
+        new:
+          authorize: Je poursuis
+          authorize_with: Renseignez votre numéro de téléphone
+          skip_verification: Vous ne pourrez pas poursuivre votre action sans renseigner cette information. Vous pouvez en revanche %{link}
+          start_exploring: consulter le contenu de la plateforme
   extended_socio_demographic_authorization:
     form:
       address: Addresse
@@ -43,3 +53,10 @@ fr:
       resident: J’atteste avoir plus de 16 ans et travailler, habiter, étudier en
         Loire–Atlantique.
       rgpd: Mention RGPD (ou lien vers les mentions légales)
+  errors:
+    messages:
+      phone_number_format: Format du numéro de téléphone invalide.
+    phone_authorization:
+      form:
+        email_recuperation_message: Ces informations personnelles sont réservées aux
+          administrateurs de la plateforme, et en aucun cas accessibles aux autres utilisateurs.
