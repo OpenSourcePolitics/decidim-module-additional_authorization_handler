@@ -2,3 +2,4 @@
 
 require "decidim/additional_authorization_handler/test/factories"
 require "decidim/proposals/test/factories"
+require "decidim/accountability/test/factories"
