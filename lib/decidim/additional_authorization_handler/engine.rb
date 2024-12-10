@@ -3,6 +3,7 @@
 require "rails"
 require "decidim/core"
 
+
 module Decidim
   module AdditionalAuthorizationHandler
     # This is the engine that runs on the public interface of additional_authorization_handler.
@@ -23,6 +24,16 @@ module Decidim
 
       initializer "AdditionalAuthorizationHandler.webpacker.assets_path" do
         Decidim.register_assets_path File.expand_path("app/packs", root)
+      end
+
+      initializer "additional_authorization_handler" do
+        config.to_prepare do
+          Decidim::Proposals::ProposalSerializer.prepend(Decidim::AdditionalAuthorizationHandler::Extends::ProposalSerializerExtend)
+
+          require "decidim/additional_authorization_handler/extends/csv_exporter_extend"
+          require "decidim/additional_authorization_handler/extends/excel_exporter_extend"
+          require "decidim/additional_authorization_handler/extends/json_exporter_extend"
+        end
       end
     end
   end
