@@ -2,7 +2,7 @@
 
 require "spec_helper"
 
-describe "Manage system authorizations", type: :system do
+describe "Admin manages system authorizations" do
   let!(:organization) { create(:organization, available_authorizations: ["phone_authorization_handler"]) }
   let(:admin) { create(:admin) }
 
@@ -23,7 +23,7 @@ describe "Manage system authorizations", type: :system do
       find("input[value='phone_authorization_handler']").set(true)
       expect(find("input[value='phone_authorization_handler']").checked?).to be(true)
 
-      click_button "Save"
+      click_on "Save"
     end
 
     expect(page).to have_content("Organization successfully updated.")
