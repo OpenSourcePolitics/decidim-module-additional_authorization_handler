@@ -10,7 +10,7 @@ module Decidim::AdditionalAuthorizationHandler
       # Returns an ExportData with the export.
       def admin_export
         data = ::JSON.pretty_generate(@collection.map do |resource|
-          @serializer.new(resource, false).run
+          @serializer.new(resource, public_scope: false).run
         end)
 
         Decidim::Exporters::ExportData.new(data, "json")

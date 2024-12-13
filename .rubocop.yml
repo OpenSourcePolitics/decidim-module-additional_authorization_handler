@@ -1,2 +1,12 @@
 inherit_gem:
   decidim-dev: rubocop-decidim.yml
+
+RSpec/SpecFilePathFormat:
+  Enabled: true
+  Exclude:
+    - spec/services/open_data_exporter_spec.rb
+RSpec/DescribeClass:
+  Enabled: true
+  Exclude:
+    - spec/system/phone_authorization_handler/admin_manages_system_authorizations_spec.rb
+    - spec/system/phone_authorization_handler/user_manages_phone_authorization_spec.rb

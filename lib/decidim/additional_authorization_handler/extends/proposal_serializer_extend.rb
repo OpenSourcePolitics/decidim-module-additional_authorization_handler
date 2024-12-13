@@ -5,7 +5,7 @@ module Decidim::AdditionalAuthorizationHandler
     module ProposalSerializerExtend
       # Public: Initializes the serializer with a proposal.
       # public_scope : Bool (default: true) - Allow to add extra information when administrator exports
-      def initialize(proposal, public_scope = true)
+      def initialize(proposal, public_scope: true)
         @proposal = proposal
         @public_scope = public_scope
       end
@@ -57,7 +57,7 @@ module Decidim::AdditionalAuthorizationHandler
           withdrawn_at: proposal.withdrawn_at
         }.merge(options_merge(author: {
           **author_fields
-        }))
+                              }))
       end
 
       # options_merge allows to add some objects to merge to the serialize
@@ -77,16 +77,21 @@ module Decidim::AdditionalAuthorizationHandler
           name: resource.authors.map do |author|
             author_name(is_author_user_group ? resource.coauthorships.first.user_group : author)
           end,
+          url: resource.authors.map do |author|
+            author_url(is_author_user_group ? resource.coauthorships.first.user_group : author)
+          end
+        }.merge(additional_fields(is_author_user_group))
+      end
+
+      def additional_fields(is_author_user_group)
+        {
           nickname: resource.authors.map do |author|
             author_nickname(is_author_user_group ? resource.coauthorships.first.user_group : author)
           end,
           email: resource.authors.map do |author|
             author_email(is_author_user_group ? resource.coauthorships.first.user_group : author)
           end,
-          url: resource.authors.map do |author|
-            author_url(is_author_user_group ? resource.coauthorships.first.user_group : author)
-          end,
-          phone_number: author_phone_number(resource.authors.map { |author| is_author_user_group ? "" : author.id }),
+          phone_number: author_phone_number(resource.authors.map { |author| is_author_user_group ? "" : author.id })
         }
       end
 

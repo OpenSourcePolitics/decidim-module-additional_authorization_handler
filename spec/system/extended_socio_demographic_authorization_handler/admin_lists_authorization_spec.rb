@@ -14,7 +14,8 @@ describe "Authorizations" do
       switch_to_host(organization.host)
       login_as admin, scope: :admin
       visit decidim_system.root_path
-      click_link('Edit', href: "/system/organizations/#{organization.id}/edit")
+      click_link_or_button "Organizations"
+      click_link_or_button "Edit"
     end
 
     it "allows the system admin to list all available authorization methods" do

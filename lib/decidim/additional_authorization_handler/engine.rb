@@ -3,7 +3,6 @@
 require "rails"
 require "decidim/core"
 
-
 module Decidim
   module AdditionalAuthorizationHandler
     # This is the engine that runs on the public interface of additional_authorization_handler.

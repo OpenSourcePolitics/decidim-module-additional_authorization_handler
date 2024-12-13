@@ -52,6 +52,22 @@ module Decidim
           ExportJob.perform_now(user, component, "dummies", "JSON")
         end
       end
+
+      describe "Excel" do
+        it "uses the Excel exporter" do
+          export_data = double
+
+          expect(Decidim::Exporters::Excel)
+            .to(receive(:new).with(anything, Decidim::Dev::DummySerializer))
+            .and_return(double(export: export_data))
+
+          expect(ExportMailer)
+            .to(receive(:export).with(user, anything, export_data))
+            .and_return(double(deliver_now: true))
+
+          ExportJob.perform_now(user, component, "dummies", "Excel")
+        end
+      end
     end
   end
 end

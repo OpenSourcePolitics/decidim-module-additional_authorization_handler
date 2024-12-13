@@ -10,6 +10,6 @@ class PhoneAuthorizationHandler < Decidim::AuthorizationHandler
             presence: true
 
   def metadata
-    super.merge(phone_number: phone_number)
+    super.merge(phone_number:)
   end
 end

@@ -9,7 +9,7 @@ module Decidim::AdditionalAuthorizationHandler
       #
       # Returns an ExportData instance.
       def admin_export(col_sep = Decidim.default_csv_col_sep)
-        data = ::CSV.generate(headers: admin_headers, write_headers: true, col_sep: col_sep) do |csv|
+        data = ::CSV.generate(headers: admin_headers, write_headers: true, col_sep:) do |csv|
           admin_processed_collection.each do |resource|
             csv << admin_headers.map { |header| custom_sanitize(resource[header]) }
           end
@@ -28,7 +28,7 @@ module Decidim::AdditionalAuthorizationHandler
 
       def admin_processed_collection
         @admin_processed_collection ||= collection.map do |resource|
-          flatten(@serializer.new(resource, false).run).deep_dup
+          flatten(@serializer.new(resource, public_scope: false).run).deep_dup
         end
       end
     end

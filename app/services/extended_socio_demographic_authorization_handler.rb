@@ -27,15 +27,15 @@ class ExtendedSocioDemographicAuthorizationHandler < Decidim::AuthorizationHandl
 
   def metadata
     super.merge(
-      last_name: last_name,
-      first_name: first_name,
-      address: address,
-      postal_code: postal_code,
-      city: city,
-      email: email,
-      phone_number: phone_number,
-      resident: resident,
-      rgpd: rgpd
+      last_name:,
+      first_name:,
+      address:,
+      postal_code:,
+      city:,
+      email:,
+      phone_number:,
+      resident:,
+      rgpd:
     )
   end
 

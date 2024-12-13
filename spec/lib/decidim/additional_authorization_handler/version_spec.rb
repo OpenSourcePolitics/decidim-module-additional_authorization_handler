@@ -10,7 +10,6 @@ module Decidim
       expect(subject.decidim_version).to eq("~> 0.29.0")
     end
 
-
     it "returns module's version" do
       expect(described_class.version).to eq("1.0.0")
     end

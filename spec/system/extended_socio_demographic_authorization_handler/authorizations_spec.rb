@@ -33,12 +33,12 @@ describe "Authorizations", with_authorization_workflows: ["dummy_authorization_h
 
         fill_in_datepicker :authorization_handler_birthday_date, with: Time.current.change(day: 12).strftime("%d/%m/%Y")
 
-        click_on "Send"
+        click_on "I continue"
         expect(page).to have_content("You have been successfully authorized")
       end
 
       it "allows the user to skip it" do
-        click_on "start exploring"
+        click_on "consult the content of the platform"
         expect(page).to have_current_path decidim.account_path
 
         expect(page).to have_content("Participant settings")
@@ -54,11 +54,11 @@ describe "Authorizations", with_authorization_workflows: ["dummy_authorization_h
 
           fill_in_datepicker :authorization_handler_birthday_date, with: Time.current.change(day: 12).strftime("%d/%m/%Y")
 
-          expect { click_on "Send" }.not_to change(Decidim::Authorization, :count)
+          expect { click_on "I continue" }.not_to change(Decidim::Authorization, :count)
           expect(page).to have_content("There was a problem creating the authorization.")
           expect(page).to have_content("A participant is already authorized with the same data. An administrator will contact you to verify your details.")
 
-          expect { click_on "Send" }.not_to change(Decidim::AuthorizationTransfer, :count)
+          expect { click_on "I continue" }.not_to change(Decidim::AuthorizationTransfer, :count)
           expect(page).to have_content("There was a problem creating the authorization.")
         end
       end
@@ -73,7 +73,7 @@ describe "Authorizations", with_authorization_workflows: ["dummy_authorization_h
 
           fill_in_datepicker :authorization_handler_birthday_date, with: Time.current.change(day: 12).strftime("%d/%m/%Y")
 
-          click_on "Send"
+          click_on "I continue"
           expect(page).to have_content("You have been successfully authorized.")
           expect(page).to have_no_content("We have recovered the following participation data based on your authorization:")
         end
@@ -100,7 +100,7 @@ describe "Authorizations", with_authorization_workflows: ["dummy_authorization_h
 
             fill_in_datepicker :authorization_handler_birthday_date, with: Time.current.change(day: 12).strftime("%d/%m/%Y")
 
-            click_on "Send"
+            click_on "I continue"
             expect(page).to have_content("You have been successfully authorized.")
             expect(page).to have_content("We have recovered the following participation data based on your authorization:")
             expect(page).to have_content("Comments: 10")
@@ -151,7 +151,7 @@ describe "Authorizations", with_authorization_workflows: ["dummy_authorization_h
         fill_in "Document number", with: "123456789X"
         fill_in_datepicker :authorization_handler_birthday_date, with: Time.current.change(day: 12).strftime("%d/%m/%Y")
 
-        click_on "Send"
+        click_on "I continue"
 
         expect(page).to have_content("You have been successfully authorized")
 
@@ -170,7 +170,7 @@ describe "Authorizations", with_authorization_workflows: ["dummy_authorization_h
         fill_in "Document number", with: "12345678"
         fill_in_datepicker :authorization_handler_birthday_date, with: Time.current.change(day: 12).strftime("%d/%m/%Y")
 
-        click_on "Send"
+        click_on "I continue"
 
         expect(page).to have_content("There was a problem creating the authorization.")
       end
@@ -241,7 +241,7 @@ describe "Authorizations", with_authorization_workflows: ["dummy_authorization_h
               end
 
               expect(page).to have_content("Document number")
-              expect(page).to have_button "Send"
+              expect(page).to have_button "I continue"
             end
           end
         end
@@ -280,7 +280,7 @@ describe "Authorizations", with_authorization_workflows: ["dummy_authorization_h
           end
 
           fill_in "Document number", with: "123456789X"
-          click_on "Send"
+          click_on "I continue"
 
           expect(page).to have_content("You have been successfully authorized")
         end

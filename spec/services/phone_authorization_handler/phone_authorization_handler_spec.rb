@@ -21,7 +21,7 @@ describe PhoneAuthorizationHandler do
   describe "valid?" do
     subject { handler.valid? }
 
-    let(:extra_params) { { phone_number: phone_number } }
+    let(:extra_params) { { phone_number: } }
 
     context "when no phone number" do
       let(:phone_number) { nil }

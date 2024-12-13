@@ -2,7 +2,7 @@
 
 require "spec_helper"
 
-describe "User manages phone authorization", type: :system do
+describe "User manages phone authorization" do
   let!(:organization) do
     create(:organization, available_authorizations: ["phone_authorization_handler"])
   end
@@ -14,7 +14,7 @@ describe "User manages phone authorization", type: :system do
     login_as user, scope: :user
 
     visit decidim.account_path
-    click_link "Authorizations"
+    click_on "Authorizations"
   end
 
   it "displays the authorization item" do
@@ -26,7 +26,7 @@ describe "User manages phone authorization", type: :system do
 
   context "when accessing phone number authorization" do
     before do
-      click_link "Phone number recovery"
+      click_on "Phone number recovery"
     end
 
     it "displays authorization form" do
@@ -40,35 +40,35 @@ describe "User manages phone authorization", type: :system do
 
     it "allows user to fill form" do
       fill_in "Phone number (without point nor whitespace)", with: "0123456789"
-      click_button "I continue"
+      click_on "I continue"
 
       expect(page).to have_content("You have been successfully authorized")
     end
 
     it "shows error message for too short phone number" do
       fill_in "Phone number (without point nor whitespace)", with: "012345678"
-      click_button "I continue"
+      click_on "I continue"
 
       expect(page).to have_content("There is an error in this field")
     end
 
     it "shows error message for too long phone number" do
       fill_in "Phone number (without point nor whitespace)", with: "01234567891234"
-      click_button "I continue"
+      click_on "I continue"
 
       expect(page).to have_content("Not a valid phone number format")
     end
 
     it "shows error message for not numeric phone number" do
       fill_in "Phone number (without point nor whitespace)", with: "NOT_A_VALID_FORMAT"
-      click_button "I continue"
+      click_on "I continue"
 
       expect(page).to have_content("Not a valid phone number format")
     end
 
     it "shows error message for invalid phone number format" do
       fill_in "Phone number (without point nor whitespace)", with: "3344444444"
-      click_button "I continue"
+      click_on "I continue"
 
       expect(page).to have_content("Not a valid phone number format")
     end

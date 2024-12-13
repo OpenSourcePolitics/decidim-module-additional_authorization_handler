@@ -241,7 +241,7 @@ module Decidim
 
         context "when admin exports proposal" do
           subject do
-            described_class.new(proposal, false)
+            described_class.new(proposal, public_scope: false)
           end
 
           let(:serialized) { subject.serialize }
@@ -317,7 +317,7 @@ module Decidim
             end
 
             it "serializes the user email" do
-              expect(serialized[:author]).to include(email: ["#{proposal.creator_author.email}"])
+              expect(serialized[:author]).to include(email: [proposal.creator_author.email.to_s])
             end
 
             it "serializes the phone number from authorization" do
@@ -381,7 +381,7 @@ module Decidim
             end
 
             it "serializes the email of the user group" do
-              expect(serialized[:author]).to include(email: ["#{proposal.coauthorships.first.user_group.email}"])
+              expect(serialized[:author]).to include(email: [proposal.coauthorships.first.user_group.email.to_s])
             end
           end
         end
