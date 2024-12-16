@@ -6,9 +6,6 @@ on:
         default: "3.2.2"
         required: false
         type: string
-      working-directory:
-        required: false
-        type: string
       test_command:
         description: 'The testing command to be ran'
         required: true
@@ -78,11 +75,11 @@ jobs:
           sudo Xvfb -ac $DISPLAY -screen 0 1920x1084x24 > /dev/null 2>&1 & # optional
           ${{ inputs.test_command }}
         name: RSpec
-        working-directory: ${{ inputs.working-directory }}
+        working-directory: ./
         env:
           VALIDATOR_HTML_URI: http://localhost:8888/
           RUBY_VERSION: ${{ inputs.ruby_version }}
-          DECIDIM_MODULE: ${{ inputs.working-directory }}
+          DECIDIM_MODULE: "decidim-module-additional_authorization_handler"
           DISPLAY: ":99"
           CI: "true"
           SIMPLECOV: "true"

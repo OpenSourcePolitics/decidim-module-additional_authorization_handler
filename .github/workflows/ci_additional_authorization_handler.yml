@@ -47,7 +47,6 @@ jobs:
     uses: ./.github/workflows/test_app.yml
     with:
       test_command: "bundle exec rspec --exclude-pattern 'spec/system/**/*_spec.rb'"
-      working-directory: "decidim-module-additional_authorization_handler"
     secrets: inherit
 
   system_tests:
@@ -56,5 +55,4 @@ jobs:
     uses: ./.github/workflows/test_app.yml
     with:
       test_command: "bundle exec rspec spec/system"
-      working-directory: "decidim-module-additional_authorization_handler"
     secrets: inherit
