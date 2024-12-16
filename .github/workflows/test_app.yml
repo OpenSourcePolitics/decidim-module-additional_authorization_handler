@@ -7,7 +7,7 @@ on:
         required: false
         type: string
       working-directory:
-        required: true
+        required: false
         type: string
       test_command:
         description: 'The testing command to be ran'
@@ -90,9 +90,6 @@ jobs:
           NODE_ENV: "test"
       - uses: codecov/codecov-action@v3
         name: Upload coverage
-        with:
-          name: ${{ inputs.working-directory }}
-          flags: ${{ inputs.working-directory }}
       - uses: actions/upload-artifact@v4
         if: always()
         with:
