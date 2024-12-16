@@ -72,6 +72,11 @@ jobs:
           key: app-${{ github.sha }}
           restore-keys: app-${{ github.sha }}
       - run: |
+          bundle install
+          name: Install gems
+          shell: "bash"
+          working-directory: ./spec/decidim_dummy_app/
+      - run: |
           sudo Xvfb -ac $DISPLAY -screen 0 1920x1084x24 > /dev/null 2>&1 & # optional
           ${{ inputs.test_command }}
         name: RSpec
