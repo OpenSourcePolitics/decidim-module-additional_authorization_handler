@@ -27,6 +27,20 @@ jobs:
     secrets: inherit
     name: Build test application
 
+  lint:
+    name: Lint code
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: rokroskar/workflow-run-cleanup-action@v0.3.0
+        if: "github.ref != 'refs/heads/develop'"
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+      - uses: OpenSourcePolitics/lint-action@master
+        with:
+          ruby_version: ${{ env.RUBY_VERSION }}
+          node_version: ${{ env.NODE_VERSION }}
+
   main:
     strategy:
       fail-fast: false
