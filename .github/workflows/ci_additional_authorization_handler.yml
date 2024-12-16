@@ -55,5 +55,5 @@ jobs:
     uses: ./.github/workflows/test_app.yml
     with:
       command: "bundle exec rspec spec/system"
+      working-directory: "decidim-module-additional_authorization_handler"
     secrets: inherit
-
