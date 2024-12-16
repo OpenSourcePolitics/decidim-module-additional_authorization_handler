@@ -41,19 +41,19 @@ jobs:
           ruby_version: ${{ env.RUBY_VERSION }}
           node_version: ${{ env.NODE_VERSION }}
 
-  main:
-    strategy:
-      fail-fast: false
-      matrix:
-        test:
-          - command: bundle exec parallel_test --type rspec --pattern spec/ --exclude-pattern spec/system
-            name: "Unit tests"
-          - command: bundle exec parallel_test --type rspec --pattern spec/system --exclude-pattern spec/system/admin
-            name: "System tests"
-      needs: build_app
-      name: ${{ matrix.test.name }}
-      uses: ./.github/workflows/test_app.yml
-      secrets: inherit
-      with:
-        working-directory: "decidim-module-additional_authorization_handler"
-        test_command: ${{ matrix.test.command }}
+  tests:
+    name: Tests
+    needs: build_app
+    uses: ./.github/workflows/test_app.yml
+    with:
+      command: "bundle exec rspec --exclude-pattern 'spec/system/**/*_spec.rb'"
+    secrets: inherit
+
+  system_tests:
+    name: System tests
+    needs: build_app
+    uses: ./.github/workflows/test_app.yml
+    with:
+      command: "bundle exec rspec spec/system"
+    secrets: inherit
+
