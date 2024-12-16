@@ -55,5 +55,5 @@ jobs:
       uses: ./.github/workflows/test_app.yml
       secrets: inherit
       with:
-        working-directory: "decidim-module-addtional_authorization_handler"
+        working-directory: "decidim-module-additional_authorization_handler"
         test_command: ${{ matrix.test.command }}
