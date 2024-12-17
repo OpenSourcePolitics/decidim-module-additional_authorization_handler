@@ -73,7 +73,8 @@ jobs:
           restore-keys: app-${{ github.sha }}
       - run: |
           bundle install
-        name: Install gems
+          bundle exec rake db:create db:schema:load
+        name: Install gems and create db
         shell: "bash"
         working-directory: ./spec/decidim_dummy_app/
       - run: |
