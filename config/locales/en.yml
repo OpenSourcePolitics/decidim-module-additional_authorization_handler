@@ -24,7 +24,7 @@ en:
           resident: Resident
           rgpd: Rgpd
         help_text:
-          global_help_html: It is necessary to complete this form to create an initiative.
+          global_help_html: It is necessary to complete this form to be authorized to perform this action.
         name: Additional informations
     components:
       additionals_authorization_handler:
