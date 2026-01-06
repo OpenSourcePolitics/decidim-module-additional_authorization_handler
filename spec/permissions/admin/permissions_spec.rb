@@ -6,7 +6,7 @@ module Decidim::AdditionalAuthorizationHandler::Admin
   describe Permissions do
     subject { described_class.new(user, permission_action, context).permissions.allowed? }
 
-    let(:organization) { create :organization }
+    let(:organization) { create(:organization) }
     let(:context) do
       {
         current_organization: organization
@@ -18,7 +18,7 @@ module Decidim::AdditionalAuthorizationHandler::Admin
     let(:permission_action) { Decidim::PermissionAction.new(**action) }
 
     context "when user is admin" do
-      let(:user) { create :user, :admin, organization: }
+      let(:user) { create(:user, :admin, organization:) }
 
       it { is_expected.to be_truthy }
 
@@ -32,7 +32,7 @@ module Decidim::AdditionalAuthorizationHandler::Admin
     end
 
     context "when user is not admin" do
-      let(:user) { create :user, organization: }
+      let(:user) { create(:user, organization:) }
 
       it_behaves_like "permission is not set"
     end
