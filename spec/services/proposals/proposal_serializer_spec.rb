@@ -214,12 +214,12 @@ module Decidim
 
           it "includes costs with a proposal not published" do
             expect(serialized).to include(
-                                    cost: nil,
-                                    cost_report: nil,
-                                    execution_period: nil,
-                                    answer: expected_answer,
-                                    state_published_at: nil
-                                  )
+              cost: nil,
+              cost_report: nil,
+              execution_period: nil,
+              answer: expected_answer,
+              state_published_at: nil
+            )
           end
         end
 
@@ -240,9 +240,9 @@ module Decidim
 
           it "includes the answered_at timestamp and leaves state_published_at nil" do
             expect(serialized).to include(
-                                    answered_at:,
-                                    state_published_at: nil
-                                  )
+              answered_at:,
+              state_published_at: nil
+            )
           end
         end
 
@@ -256,9 +256,9 @@ module Decidim
 
           it "includes both answered_at and state_published_at timestamps" do
             expect(serialized).to include(
-                                    answered_at:,
-                                    state_published_at:
-                                  )
+              answered_at:,
+              state_published_at:
+            )
           end
         end
 
