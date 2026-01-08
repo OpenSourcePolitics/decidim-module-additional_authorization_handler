@@ -58,7 +58,7 @@ jobs:
       - run: |
           rm -f ./spec/decidim_dummy_app/app/services/dummy_signature_handler.rb
           rm -f ./spec/decidim_dummy_app/app/services/dummy_sms_mobile_phone_validator.rb
-          name: Remove Initiative-dependent dummy files
+        name: Remove Initiative-dependent dummy files
       - run: mkdir -p ./spec/decidim_dummy_app/tmp/screenshots
         name: Create the screenshots folder
         shell: "bash"
