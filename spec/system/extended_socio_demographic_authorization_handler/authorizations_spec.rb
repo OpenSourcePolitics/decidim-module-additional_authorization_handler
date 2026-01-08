@@ -39,7 +39,7 @@ describe "Authorizations", with_authorization_workflows: %w(dummy_authorization_
       it "allows the user to skip it" do
         click_on "Example authorization"
 
-        click_on "start exploring"
+        click_link_or_button "consult the content of the platform"
         expect(page).to have_current_path decidim.root_path
 
         expect(page).to have_content("How do I take part in a process?")
@@ -278,7 +278,7 @@ describe "Authorizations", with_authorization_workflows: %w(dummy_authorization_
           end
 
           fill_in "Document number", with: "123456789X"
-          click_on "Send"
+          click_on "I continue"
 
           expect(page).to have_content("You have been successfully authorized")
         end
@@ -320,7 +320,7 @@ describe "Authorizations", with_authorization_workflows: %w(dummy_authorization_
     end
 
     context "and there are authorizations defined for the resource" do
-      let(:permissions) do
+      let!(:permissions) do
         {
           action => {
             authorization_handlers: {
@@ -347,7 +347,7 @@ describe "Authorizations", with_authorization_workflows: %w(dummy_authorization_
               redirect_url: decidim_verifications.onboarding_pending_authorizations_path
             )
             expect(page).to have_content "We need to verify your identity"
-            expect(page).to have_content "Verify with Example authorization"
+            expect(page).to have_content "Fill in your phone number"
           end
         end
 
