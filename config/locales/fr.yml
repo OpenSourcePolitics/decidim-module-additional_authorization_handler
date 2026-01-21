@@ -23,7 +23,7 @@ fr:
           resident: J'atteste avoir plus de 16 ans et résider, travailler ou étudier dans le département de Loire-Atlantique.
           rgpd: rgpd
         help_text:
-          global_help_html: Il est nécessaire de compléter ce formulaire pour créer une initiative.
+          global_help_html: Il est nécessaire de remplir ce formulaire pour être autorisé à effectuer cette action.
         name: Données personnelles
     verifications:
       authorizations:

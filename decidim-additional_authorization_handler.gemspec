@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
     "homepage_uri" => "https://decidim.org",
     "source_code_uri" => "https://github.com/decidim/decidim"
   }
-  s.required_ruby_version = "~> 3.2"
+  s.required_ruby_version = "~> 3.3"
 
   s.name = "decidim-additional_authorization_handler"
   s.summary = "A decidim additional_authorization_handler module"

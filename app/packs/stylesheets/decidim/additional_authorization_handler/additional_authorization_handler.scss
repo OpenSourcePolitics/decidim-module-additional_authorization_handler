@@ -20,6 +20,18 @@
     width: 60%;
     margin-bottom: 1rem;
   }
+  label[for=authorization_handler_first_name] input {
+    display: block;
+    margin: 1rem 0;
+  }
+  label[for=authorization_handler_last_name] input {
+    display: block;
+    margin: 1rem 0;
+  }
+  label[for=authorization_handler_postal_code] input {
+    display: block;
+    margin: 1rem 0;
+  }
   label[for=authorization_handler_address] input {
     display: block;
     margin: 1rem 0;
